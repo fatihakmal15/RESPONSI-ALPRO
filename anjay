@@ -1,0 +1,84 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+#include<algorithm>
+#include<string>
+
+using namespace std;
+
+struct mahasiswa{
+	string nim;
+	string nama;
+  	int nilaiUAS;
+    int nilaiUTS;
+};
+void datamahasiswa(){
+	mahasiswa m;
+	cout<<"Masukkan NIM:\n";
+	getline(cin,m.nim);
+	cout<<"Masukkan Nama:\n";
+	getline(cin,m.nama);
+	cout<<"Masukkan Nilai UAS:";
+	cin>>m.nilaiUAS;
+	cout<<"Masukkan Nilai UTS:";
+	cin>>m.nilaiUTS;
+	ofstream file("data.txt",ios::app);
+	file <<cout <<"Masukan NIM:"<<m.nim;
+	file <<cout <<"Masukan Nama:"<<m.nama;
+	file <<cout <<"Masukan Nilai UAS:"<<m.nilaiUAS;
+	file <<cout <<"Masukan Nilai UTS:"<<m.nilaiUTS;
+	if(file.is_open()){		
+	cout <<"Data berhasil disimpan";}
+	else{
+	cout <<"Data tidak berhasil";
+	}
+	file.close();
+}
+
+void tampildata(){
+	ifstream file("data.txt",ios::app);
+	string line;
+		while(getline(file,line)){
+			cout <<line<<endl;
+		}
+}
+void status(){
+	mahasiswa m;
+	if(m.nilaiUAS>75||m.nilaiUTS>75)
+	cout<<"anda lulus";
+	else{
+	cout<<"tidak lulus";
+}
+
+}
+
+
+int main(){
+	vector<mahasiswa>data;
+	vector<mahasiswa>nilai;
+	int pil;
+	cout <<"Masukkan Data Mahasiswa:\n";
+	cout <<"1.Tambah data mahasiswa:\n";
+	cout <<"2.Yang udah terdaftar:\n";
+	cout <<"3.Lulus atau tidak:\n";
+	cout <<"pilih:";
+	cin>>pil;
+	switch(pil){
+		case 1:
+			datamahasiswa();
+			break;
+		case 2:
+			tampildata();
+			break;
+		case 3:
+			status();
+			break;
+		case 4:
+		
+			break;
+
+	}
+	return 0;
+	}
+
+
